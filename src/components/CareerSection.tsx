@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Career {
   title: string;
@@ -85,42 +85,55 @@ const CareerCard = ({ career, index }: { career: Career, index: number }) => {
     setIsExpanded(!isExpanded);
   };
 
-  const animationDirection = index % 2 === 0 ? "fade-right" : "fade-left";
+  const animationDirection = index % 2 === 0 ? "translate-x-[-100px]" : "translate-x-[100px]";
+  const finalPosition = "translate-x-0";
 
   return (
-    <div 
-      className={`bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 ${isExpanded ? 'scale-[1.02]' : ''}`}
-      data-aos={animationDirection}
-      data-aos-delay={index * 100}
+    <Card 
+      className={`transform transition-all duration-700 ease-out hover:scale-105 ${
+        isExpanded ? 'scale-[1.02] shadow-xl' : 'opacity-90'
+      } ${animationDirection} hover:${finalPosition}`}
+      data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+      data-aos-delay={index * 150}
+      data-aos-duration="1000"
+      data-aos-easing="ease-out-cubic"
     >
-      <div 
-        className="p-6 cursor-pointer"
-        onClick={toggleExpand}
-      >
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="text-3xl">{career.emoji}</div>
-            <h3 className="text-xl font-semibold text-gray-900">{career.title}</h3>
+      <CardContent className="p-6">
+        <div 
+          className="cursor-pointer space-y-4"
+          onClick={toggleExpand}
+        >
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl bg-gradient-to-br from-tech-blue to-tech-purple p-3 rounded-full text-white shadow-lg">
+                {career.emoji}
+              </div>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
+                {career.title}
+              </h3>
+            </div>
+            <button 
+              className="text-tech-purple hover:text-tech-blue transition-colors"
+              aria-label={isExpanded ? "Collapse" : "Expand"}
+            >
+              {isExpanded ? <ChevronUp className="h-6 w-6" /> : <ChevronDown className="h-6 w-6" />}
+            </button>
           </div>
-          <button 
-            className="text-gray-500 hover:text-tech-purple transition-colors"
-            aria-label={isExpanded ? "Collapse" : "Expand"}
-          >
-            {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-          </button>
-        </div>
-        
-        <p className="mt-3 text-gray-600">{career.description}</p>
-        
-        {isExpanded && (
-          <div className="mt-4 space-y-4 animate-fade-in">
+          
+          <p className="text-gray-600 leading-relaxed text-lg">
+            {career.description}
+          </p>
+          
+          <div className={`space-y-6 transition-all duration-500 ease-in-out ${
+            isExpanded ? 'opacity-100 max-h-[500px]' : 'opacity-0 max-h-0 overflow-hidden'
+          }`}>
             <div>
-              <h4 className="font-medium text-tech-blue mb-1">Key Skills</h4>
+              <h4 className="font-semibold text-tech-blue mb-3 text-lg">Key Skills</h4>
               <div className="flex flex-wrap gap-2">
                 {career.skills.map((skill, idx) => (
                   <span 
                     key={idx} 
-                    className="px-2 py-1 bg-tech-blue/10 text-tech-blue text-sm rounded-full"
+                    className="px-4 py-2 bg-tech-blue/10 text-tech-blue rounded-full text-sm font-medium hover:bg-tech-blue/20 transition-colors"
                   >
                     {skill}
                   </span>
@@ -129,12 +142,12 @@ const CareerCard = ({ career, index }: { career: Career, index: number }) => {
             </div>
             
             <div>
-              <h4 className="font-medium text-tech-purple mb-1">Tools & Technologies</h4>
+              <h4 className="font-semibold text-tech-purple mb-3 text-lg">Tools & Technologies</h4>
               <div className="flex flex-wrap gap-2">
                 {career.tools.map((tool, idx) => (
                   <span 
                     key={idx} 
-                    className="px-2 py-1 bg-tech-purple/10 text-tech-purple text-sm rounded-full"
+                    className="px-4 py-2 bg-tech-purple/10 text-tech-purple rounded-full text-sm font-medium hover:bg-tech-purple/20 transition-colors"
                   >
                     {tool}
                   </span>
@@ -143,34 +156,39 @@ const CareerCard = ({ career, index }: { career: Career, index: number }) => {
             </div>
             
             <div>
-              <h4 className="font-medium text-tech-violet mb-1">Example Roles</h4>
-              <ul className="list-disc list-inside text-gray-600 pl-2">
+              <h4 className="font-semibold text-tech-violet mb-3 text-lg">Career Paths</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {career.roles.map((role, idx) => (
-                  <li key={idx}>{role}</li>
+                  <div 
+                    key={idx}
+                    className="p-3 bg-gray-50 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                  >
+                    {role}
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
 const CareerSection = () => {
   return (
-    <section id="careers" className="py-24 bg-gray-50">
+    <section id="careers" className="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-tech-blue via-tech-purple to-tech-violet bg-clip-text text-transparent mb-6">
             🚀 Explore Your Future in Tech
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 leading-relaxed">
             Discover exciting career paths and opportunities in the technology sector
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {careers.map((career, index) => (
             <CareerCard 
               key={index}

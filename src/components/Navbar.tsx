@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Menu, X, Github, Linkedin, User } from "lucide-react";
 import {
@@ -21,10 +20,17 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 font-bold text-tech-blue">
-            <Link to="/">
-              <span className="hidden sm:block">Vignan's Institute of Information Technology</span>
-              <span className="sm:hidden">VIIT</span>
+          <div className="flex items-center flex-shrink-0">
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="/lovable-uploads/aef5a4b8-1a47-4588-9435-cd1fe0a0ed55.png"
+                alt="VIIT Logo"
+                className="h-10 w-10"
+              />
+              <span className="hidden sm:block font-bold text-tech-blue">
+                Vignan's Institute of Information Technology
+              </span>
+              <span className="sm:hidden font-bold text-tech-blue">VIIT</span>
             </Link>
           </div>
 
