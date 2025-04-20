@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,36 +22,38 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 font-bold text-tech-blue">
-            <span className="hidden sm:block">Vignan's Institute of Information Technology</span>
-            <span className="sm:hidden">VIIT</span>
+            <Link to="/">
+              <span className="hidden sm:block">Vignan's Institute of Information Technology</span>
+              <span className="sm:hidden">VIIT</span>
+            </Link>
           </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
+            <Link
+              to="/"
               className="text-gray-700 hover:text-tech-purple transition-colors duration-300 font-medium"
             >
               Home
-            </a>
-            <a
-              href="#register"
+            </Link>
+            <Link
+              to="/register"
               className="text-gray-700 hover:text-tech-purple transition-colors duration-300 font-medium"
             >
               Register
-            </a>
-            <a
-              href="#take-attendance"
+            </Link>
+            <Link
+              to="/take-attendance"
               className="text-gray-700 hover:text-tech-purple transition-colors duration-300 font-medium"
             >
               Take Attendance
-            </a>
-            <a
-              href="#view-attendance"
+            </Link>
+            <Link
+              to="/view-attendance"
               className="text-gray-700 hover:text-tech-purple transition-colors duration-300 font-medium"
             >
               View Attendance
-            </a>
+            </Link>
           </div>
 
           {/* About Dropdown */}
@@ -62,7 +65,7 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuItem className="text-sm font-medium">
-                  <span>Dev Team</span>
+                  <Link to="/about" className="w-full">Dev Team</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="flex items-center justify-between">
                   <span>John Doe (12345A0123)</span>
@@ -107,37 +110,42 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg animate-fade-in">
-            <a
-              href="#home"
+            <Link
+              to="/"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-tech-purple hover:bg-gray-50"
               onClick={toggleMenu}
             >
               Home
-            </a>
-            <a
-              href="#register"
+            </Link>
+            <Link
+              to="/register"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-tech-purple hover:bg-gray-50"
               onClick={toggleMenu}
             >
               Register
-            </a>
-            <a
-              href="#take-attendance"
+            </Link>
+            <Link
+              to="/take-attendance"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-tech-purple hover:bg-gray-50"
               onClick={toggleMenu}
             >
               Take Attendance
-            </a>
-            <a
-              href="#view-attendance"
+            </Link>
+            <Link
+              to="/view-attendance"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-tech-purple hover:bg-gray-50"
               onClick={toggleMenu}
             >
               View Attendance
-            </a>
+            </Link>
             <div className="px-3 py-2">
               <h3 className="text-sm font-medium text-gray-500">About</h3>
               <div className="mt-2 space-y-2">
+                <div className="flex justify-between items-center">
+                  <Link to="/about" className="text-sm" onClick={toggleMenu}>
+                    View Development Team
+                  </Link>
+                </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">John Doe (12345A0123)</span>
                   <div className="flex space-x-2">
