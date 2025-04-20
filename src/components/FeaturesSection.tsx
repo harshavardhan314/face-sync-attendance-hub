@@ -26,13 +26,13 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-24 bg-gray-50">
+    <section id="features" className="py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-tech-blue via-tech-purple to-tech-violet bg-clip-text text-transparent mb-6">
             Powerful Features for Modern Attendance
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 leading-relaxed">
             Our system combines cutting-edge technology with an intuitive interface
             to streamline the attendance process.
           </p>
@@ -42,17 +42,18 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl p-6 transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group"
+              className="bg-white rounded-xl shadow-lg hover:shadow-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 group relative overflow-hidden"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-tech-blue to-tech-purple flex items-center justify-center text-white mb-4 group-hover:rotate-6 transition-transform duration-300">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tech-blue via-tech-purple to-tech-violet transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-tech-blue to-tech-purple flex items-center justify-center text-white mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-lg">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-tech-purple transition-colors duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-tech-purple transition-colors duration-300">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                 {feature.description}
               </p>
             </div>
