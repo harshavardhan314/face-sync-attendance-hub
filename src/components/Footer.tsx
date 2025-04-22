@@ -6,20 +6,38 @@ import BackToTop from "./BackToTop";
 
 const developers = [
   {
-    name: "John Doe",
-    rollNo: "12345A0123",
+    name: "T. Harsha Vardhan",
+    rollNo: "23L31A05N8",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   },
   {
-    name: "Jane Smith",
-    rollNo: "12345A0124",
+    name: "T. Jaswanth",
+    rollNo: "23L31A05N7",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   },
   {
-    name: "Mike Johnson",
-    rollNo: "12345A0125",
+    name: "S. Hemanth",
+    rollNo: "23L31A05M6",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "S. Hrishi",
+    rollNo: "23L31A05M5",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Y. Vivek",
+    rollNo: "23L31A05Q2",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "S. Abhiram",
+    rollNo: "23L31A05L5",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   }
