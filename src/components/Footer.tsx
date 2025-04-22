@@ -1,62 +1,49 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Github, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Youtube } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import BackToTop from "./BackToTop";
 
 const developers = [
   {
-    name: "T. Harsha Vardhan",
-    rollNo: "23L31A05N8",
+    name: "John Doe",
+    rollNo: "12345A0123",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   },
   {
-    name: "T. Jaswanth",
-    rollNo: "23L31A05N7",
+    name: "Jane Smith",
+    rollNo: "12345A0124",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   },
   {
-    name: "S. Hemanth",
-    rollNo: "23L31A05M6",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com"
-  },
-  {
-    name: "S. Hrishi",
-    rollNo: "23L31A05M5",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com"
-  },
-  {
-    name: "Y. Vivek",
-    rollNo: "23L31A05Q2",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com"
-  },
-  {
-    name: "S. Abhiram",
-    rollNo: "23L31A05L5",
+    name: "Mike Johnson",
+    rollNo: "12345A0125",
     github: "https://github.com",
     linkedin: "https://linkedin.com"
   }
 ];
 
-const contactInfo = {
-  email: "info@vignaniit.edu.in",
-  phone: "+91-891-234-5678",
-  officeHours: "9:00 AM – 5:00 PM IST"
-};
-
 const Footer = () => {
   return (
     <>
       <BackToTop />
-      <footer className="bg-gray-900 text-white pt-16 pb-6">
+      <footer className="relative bg-gray-900 text-white pt-16 pb-6">
+        {/* Wave Divider */}
+        <div className="absolute top-0 left-0 right-0 transform -translate-y-full">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
+            <path
+              fill="rgb(17, 24, 39)"
+              fillOpacity="1"
+              d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
-            {/* Institution Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-8">
+            {/* College Info */}
             <div className="space-y-4">
               <h3 className="text-xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
                 Vignan's Institute of Information Technology
@@ -66,21 +53,31 @@ const Footer = () => {
                 <br />
                 Andhra Pradesh, India – 530049
               </p>
-              {/* Contact Info */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-gray-400">
-                  <Mail className="h-4 w-4" />
-                  <a href={`mailto:${contactInfo.email}`} className="hover:text-white transition-colors">
-                    {contactInfo.email}
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 text-gray-400">
-                  <Phone className="h-4 w-4" />
-                  <a href={`tel:${contactInfo.phone}`} className="hover:text-white transition-colors">
-                    {contactInfo.phone}
-                  </a>
-                </div>
-                <p className="text-gray-400">Office Hours: {contactInfo.officeHours}</p>
+              <div className="flex space-x-4 pt-2">
+                <a
+                  href="https://github.com/viit-college"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+                >
+                  <Github className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/viit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://youtube.com/viit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
+                >
+                  <Youtube className="h-6 w-6" />
+                </a>
               </div>
             </div>
 
@@ -91,50 +88,19 @@ const Footer = () => {
                 <Link to="/" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
                   Home
                 </Link>
-                <Link to="/dashboard" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Attendance Dashboard
+                <Link to="/register" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
+                  Register
                 </Link>
-                <Link to="/faculty" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Faculty Login
+                <Link to="/take-attendance" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
+                  Take Attendance
                 </Link>
-                <Link to="/student" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Student Portal
+                <Link to="/view-attendance" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
+                  View Attendance
                 </Link>
-                <Link to="/support" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Help / Support
+                <Link to="/about" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
+                  About
                 </Link>
               </nav>
-            </div>
-
-            {/* Social Media */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://facebook.com/viit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Facebook className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://linkedin.com/school/viit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Linkedin className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://instagram.com/viit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Instagram className="h-6 w-6" />
-                </a>
-              </div>
             </div>
 
             {/* Development Team */}
@@ -146,27 +112,7 @@ const Footer = () => {
                     <p className="text-white font-medium group-hover:text-tech-purple transition-colors duration-300">
                       {dev.name}
                     </p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm text-gray-400">{dev.rollNo}</p>
-                      <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <a
-                          href={dev.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-white transition-colors"
-                        >
-                          <Github className="h-4 w-4" />
-                        </a>
-                        <a
-                          href={dev.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-white transition-colors"
-                        >
-                          <Linkedin className="h-4 w-4" />
-                        </a>
-                      </div>
-                    </div>
+                    <p className="text-sm text-gray-400">{dev.rollNo}</p>
                   </div>
                 ))}
               </div>
@@ -178,7 +124,10 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-center">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Vignan's Institute of Information Technology, Duvvada. All rights reserved.
+              © {new Date().getFullYear()} Vignan's Institute of Information Technology. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs mt-2">
+              Developed with ❤️ by VIIT Students
             </p>
           </div>
         </div>
@@ -188,4 +137,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
