@@ -11,41 +11,29 @@ export type Database = {
     Tables: {
       attendance: {
         Row: {
-          class_name: string
-          created_at: string
-          date: string
           id: string
           status: string
-          student_id: string
-          subject: string
-          time: string
+          timestamp: string
+          user_id: string
         }
         Insert: {
-          class_name: string
-          created_at?: string
-          date: string
           id?: string
           status: string
-          student_id: string
-          subject: string
-          time: string
+          timestamp?: string
+          user_id: string
         }
         Update: {
-          class_name?: string
-          created_at?: string
-          date?: string
           id?: string
           status?: string
-          student_id?: string
-          subject?: string
-          time?: string
+          timestamp?: string
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "attendance_student_id_fkey"
-            columns: ["student_id"]
+            foreignKeyName: "attendance_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "students"
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -98,6 +86,30 @@ export type Database = {
           id?: string
           name?: string
           roll_number?: string
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          created_at: string
+          face_encoding: string | null
+          id: string
+          name: string
+          roll_no: string
+        }
+        Insert: {
+          created_at?: string
+          face_encoding?: string | null
+          id?: string
+          name: string
+          roll_no: string
+        }
+        Update: {
+          created_at?: string
+          face_encoding?: string | null
+          id?: string
+          name?: string
+          roll_no?: string
         }
         Relationships: []
       }
