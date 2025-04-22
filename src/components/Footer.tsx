@@ -1,8 +1,6 @@
 
+import { Github, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Youtube } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import BackToTop from "./BackToTop";
 
 const developers = [
   {
@@ -27,112 +25,83 @@ const developers = [
 
 const Footer = () => {
   return (
-    <>
-      <BackToTop />
-      <footer className="relative bg-gray-900 text-white pt-16 pb-6">
-        {/* Wave Divider */}
-        <div className="absolute top-0 left-0 right-0 transform -translate-y-full">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
-            <path
-              fill="rgb(17, 24, 39)"
-              fillOpacity="1"
-              d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            ></path>
-          </svg>
-        </div>
-
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-8">
-            {/* College Info */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-tech-blue to-tech-purple bg-clip-text text-transparent">
-                Vignan's Institute of Information Technology
-              </h3>
-              <p className="text-gray-400">
-                Duvvada, Visakhapatnam
-                <br />
-                Andhra Pradesh, India – 530049
-              </p>
-              <div className="flex space-x-4 pt-2">
-                <a
-                  href="https://github.com/viit-college"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Github className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://linkedin.com/company/viit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Linkedin className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://youtube.com/viit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                >
-                  <Youtube className="h-6 w-6" />
-                </a>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <nav className="space-y-3">
-                <Link to="/" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Home
-                </Link>
-                <Link to="/register" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Register
-                </Link>
-                <Link to="/take-attendance" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  Take Attendance
-                </Link>
-                <Link to="/view-attendance" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  View Attendance
-                </Link>
-                <Link to="/about" className="block text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-2 transform">
-                  About
-                </Link>
-              </nav>
-            </div>
-
-            {/* Development Team */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Development Team</h3>
-              <div className="space-y-4">
-                {developers.map((dev, index) => (
-                  <div key={index} className="group">
-                    <p className="text-white font-medium group-hover:text-tech-purple transition-colors duration-300">
-                      {dev.name}
-                    </p>
-                    <p className="text-sm text-gray-400">{dev.rollNo}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <Separator className="bg-gray-800 my-6" />
-
-          {/* Copyright */}
-          <div className="text-center">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Vignan's Institute of Information Technology. All rights reserved.
-            </p>
-            <p className="text-gray-500 text-xs mt-2">
-              Developed with ❤️ by VIIT Students
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h3 className="text-xl font-bold mb-4">Face-Sync Attendance Hub</h3>
+            <p className="text-gray-400 max-w-md">
+              A modern facial recognition-based attendance management system
+              developed by students of Vignan's Institute of Information Technology.
             </p>
           </div>
+          
+          <div>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/register" className="text-gray-400 hover:text-white transition-colors">Register</Link>
+              </li>
+              <li>
+                <Link to="/take-attendance" className="text-gray-400 hover:text-white transition-colors">Take Attendance</Link>
+              </li>
+              <li>
+                <Link to="/view-attendance" className="text-gray-400 hover:text-white transition-colors">View Attendance</Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">Development Team</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </footer>
-    </>
+        
+        <div className="pt-8 border-t border-gray-800">
+          <h3 className="text-xl font-bold mb-4 text-center">Development Team</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {developers.map((dev, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-800 rounded-lg p-4 flex flex-col items-center text-center hover:bg-gray-700 transition-colors"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-tech-blue to-tech-purple rounded-full flex items-center justify-center text-white text-xl mb-3">
+                  {dev.name.charAt(0)}
+                </div>
+                <h4 className="font-medium">{dev.name}</h4>
+                <p className="text-gray-400 text-sm mb-3">{dev.rollNo}</p>
+                <div className="flex space-x-3">
+                  <a 
+                    href={dev.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a 
+                    href={dev.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="text-center mt-8 text-gray-500 text-sm">
+          <p>&copy; {new Date().getFullYear()} Face-Sync Attendance Hub. All rights reserved.</p>
+          <p className="mt-1">Developed at Vignan's Institute of Information Technology</p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
