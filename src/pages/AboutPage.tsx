@@ -8,48 +8,57 @@ const Footer = lazy(() => import("@/components/Footer"));
 
 const developers = [
   {
-    name: "John Doe",
-    rollNo: "12345A0123",
+    name: "T. Harsha Vardhan",
+    rollNo: "23L31A05N8",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     position: "Frontend Developer",
-    bio: "Specialized in React and Tailwind CSS, focusing on responsive design and user experience.",
+    bio: "Contributed to the development of the user interface and frontend architecture.",
     avatar: "/placeholder.svg"
   },
   {
-    name: "Jane Smith",
-    rollNo: "12345A0124",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    position: "Machine Learning Engineer",
-    bio: "Implemented the facial recognition algorithm using TensorFlow and OpenCV.",
-    avatar: "/placeholder.svg"
-  },
-  {
-    name: "Mike Johnson",
-    rollNo: "12345A0125",
+    name: "T. Jaswanth",
+    rollNo: "23L31A05N7",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     position: "Backend Developer",
-    bio: "Built the API endpoints and database architecture using Node.js and MongoDB.",
+    bio: "Designed and implemented the backend infrastructure and API endpoints.",
     avatar: "/placeholder.svg"
   },
   {
-    name: "Sarah Williams",
-    rollNo: "12345A0126",
+    name: "S. Hemanth",
+    rollNo: "23L31A05M6",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
-    position: "UI/UX Designer",
-    bio: "Created wireframes and design prototypes for intuitive user interfaces.",
+    position: "Machine Learning Engineer",
+    bio: "Developed facial recognition algorithms and model optimization.",
     avatar: "/placeholder.svg"
   },
   {
-    name: "David Brown",
-    rollNo: "12345A0127",
+    name: "S. Hrishi",
+    rollNo: "23L31A05M5",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     position: "DevOps Engineer",
-    bio: "Managed deployment pipelines and infrastructure using Docker and AWS.",
+    bio: "Managed deployment pipelines and cloud infrastructure.",
+    avatar: "/placeholder.svg"
+  },
+  {
+    name: "Y. Vivek",
+    rollNo: "23L31A05Q2",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com",
+    position: "Database Specialist",
+    bio: "Designed database schema and optimized data storage solutions.",
+    avatar: "/placeholder.svg"
+  },
+  {
+    name: "S. Abhiram",
+    rollNo: "23L31A05L5",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com",
+    position: "UI/UX Designer",
+    bio: "Created intuitive user interfaces and improved user experience.",
     avatar: "/placeholder.svg"
   }
 ];
