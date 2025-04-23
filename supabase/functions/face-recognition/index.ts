@@ -1,4 +1,5 @@
 
+// deno-lint-ignore-file no-explicit-any
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4';
 
@@ -8,7 +9,6 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
@@ -18,83 +18,74 @@ serve(async (req) => {
       throw new Error('Method not allowed');
     }
 
-    // Parse request body
     const requestData = await req.json();
-    
-    // Initialize Supabase client
+
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // Handle different operations based on the action parameter
     if (requestData.action === 'register') {
-      // Handle face registration
       const { faceEncoding, name, rollNo } = requestData;
-      
       if (!faceEncoding || !name || !rollNo) {
         throw new Error('Missing required fields for registration');
       }
-      
-      // Store the face encoding in the database
+
+      // Insert the user into the new users table
       const { data: user, error: insertError } = await supabaseClient
         .from('users')
         .insert({
           name,
-          roll_no: rollNo,
-          face_encoding: JSON.stringify(faceEncoding)
+          roll_no: rollNo, // matches the new table
+          face_encoding: JSON.stringify(faceEncoding),
         })
         .select('*')
         .single();
-      
+
       if (insertError) {
+        // If unique violation, inform user cleanly
+        if ((insertError as any).code === '23505') {
+          return new Response(
+            JSON.stringify({
+              success: false,
+              message: 'User already exists with this roll number.'
+            }),
+            { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 409 }
+          );
+        }
         throw insertError;
       }
-      
+
       return new Response(
-        JSON.stringify({ 
-          success: true, 
+        JSON.stringify({
+          success: true,
           message: 'User registered successfully',
-          user 
+          user,
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
-    } 
+    }
+
     else if (requestData.action === 'recognize') {
-      // Handle face recognition for attendance
       const { faceEncoding } = requestData;
-      
       if (!faceEncoding) {
         throw new Error('Missing face encoding for recognition');
       }
-      
-      // Get all users with their face encodings
+
       const { data: users, error: usersError } = await supabaseClient
         .from('users')
-        .select('*')
+        .select('id, name, roll_no, face_encoding')
         .not('face_encoding', 'is', null);
-      
+
       if (usersError) {
         throw usersError;
       }
-      
-      console.log(`Found ${users.length} users with face encodings`);
-      
-      // Compare the new encoding with stored encodings
-      // Note: In a production environment, you'd want to use a proper face recognition library
-      // This is a simplified example - would benefit from using face_recognition package on the server
+
       let matchedUser = null;
-      
       for (const user of users) {
         try {
           const storedEncoding = JSON.parse(user.face_encoding);
-          
-          // Example of basic Euclidean distance comparison
-          // A proper implementation would use a specialized algorithm or library
           const distance = calculateEuclideanDistance(faceEncoding, storedEncoding);
-          console.log(`Distance for user ${user.name}: ${distance}`);
-          
-          // Threshold can be adjusted for sensitivity
           const THRESHOLD = 0.6;
           if (distance < THRESHOLD) {
             matchedUser = user;
@@ -104,25 +95,26 @@ serve(async (req) => {
           console.error(`Error parsing face encoding for user ${user.id}:`, e);
         }
       }
-      
+
       if (matchedUser) {
-        // Log attendance
+        // Insert attendance record into new table
         const { data: attendance, error: attendanceError } = await supabaseClient
           .from('attendance')
           .insert({
             user_id: matchedUser.id,
-            status: 'present'
+            status: 'present', // for demo, always present when recognized
+            // timestamp auto-set by DB default
           })
           .select('*')
           .single();
-        
+
         if (attendanceError) {
           throw attendanceError;
         }
-        
+
         return new Response(
-          JSON.stringify({ 
-            success: true, 
+          JSON.stringify({
+            success: true,
             user: matchedUser,
             attendance,
             message: `Attendance marked for ${matchedUser.name}`
@@ -130,11 +122,11 @@ serve(async (req) => {
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
-      
+
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          message: 'No match found' 
+        JSON.stringify({
+          success: false,
+          message: 'No match found'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
@@ -146,7 +138,7 @@ serve(async (req) => {
     console.error('Error in face-recognition function:', error);
     return new Response(
       JSON.stringify({ success: false, error: error.message }),
-      { 
+      {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       }
@@ -155,11 +147,10 @@ serve(async (req) => {
 });
 
 // Helper function to calculate Euclidean distance between two face encodings
-function calculateEuclideanDistance(encoding1, encoding2) {
+function calculateEuclideanDistance(encoding1: number[], encoding2: number[]) {
   if (!Array.isArray(encoding1) || !Array.isArray(encoding2) || encoding1.length !== encoding2.length) {
     throw new Error('Invalid encodings provided for comparison');
   }
-  
   let sum = 0;
   for (let i = 0; i < encoding1.length; i++) {
     sum += Math.pow(encoding1[i] - encoding2[i], 2);
